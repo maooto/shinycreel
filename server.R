@@ -13,12 +13,6 @@ shinyServer(function(input, output) {
       addProviderTiles(providers$Stamen.TonerLite, 
                        options = providerTileOptions(noWrap = TRUE) 
                        ) 
-    
-    # %>%
-    #   addCircleMarkers(radius = 2, 
-    #                    color = 'brown', stroke = FALSE, fillOpacity = 1, 
-    #                    lng = rawsites$long, lat = rawsites$lat, 
-    #                    label = rawsites$Site)
     })
   
 
@@ -217,52 +211,3 @@ shinyServer(function(input, output) {
 
   
 })
-  
-#######old code ################  
-#  output$creelplotcumu <- renderPlot({
-#   
-#   
-#   cumuplotter <- function(fish) { 
-#     
-#     #ds <- creelcumu[, c('Date', 'Site', as.character(fish))]
-#     
-#     ggplot() + 
-#       geom_line(data = creelcumu, aes(x = Date, y = creelcumu[,as.character(fish)], group = Site))
-#     
-#     }
-#   
-#   cumuplotter(input$fishtype)
-#   
-#   
-# })
-
-# #FUNCTION TO POPUP DISPLAY OF MOST RECENT COUNTS 
-# popup <- function(site, lat, lng) {
-#   
-#   clickedsitedata <- creel[creel$Site == site, ] 
-#   clickedsitedata <- clickedsitedata[clickedsitedata$Date == max(clickedsitedata$Date), ]
-#   
-#   
-#                           
-#   content <- as.character(tagList(
-#     tags$h4(paste("Site: ", callsites$Site, sep = '')), 
-#     tages$strong("Data from most recent creel check:" )
-#   ))
-#   
-#   leafletProxy("creelmap") %>% addPopups(lng, lat, content, layerId = site)
-# }
-# 
-# 
-# observe({
-#   
-#   leafletProxy("creelmap") %>% clearPopups()
-#   event <- input$map_shap_click
-#   if(is.null(event))
-#     return()
-#   
-#   isolate({
-#     popup(event$id, event$lat, event$lng)
-#   })
-# })
-# 
-

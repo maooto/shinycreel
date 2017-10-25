@@ -1,20 +1,4 @@
 ### 0 - SETUP #####
-#setwd('c:/users/matt clark/desktop/creelcounts/shinycreel/Data')
-
-#library(leaflet)
-#library(sp)
-# install.packages('devtools')
-# require('devtools')
-# devtools::install_github('rstudio/shiny')
-# devtools::install_github('Leaflet/Leaflet.markercluster')
-# require('shinyapps')
-# rsconnect::setAccountInfo(name='maooto',
-#                           token='84272134F46C84BD7E86EDC766F562EB',
-#                           secret='<SECRET>')
-
-
-#setwd('c:/users/matt clark/desktop/creelcounts/shinycreel')
-#runApp()
 
 library(stringr)
 library(ggplot2)
@@ -93,12 +77,6 @@ creelcumu <- creeltsfull[ , c(1:2, 13:dim(creeltsfull)[2])]
 names(creelcumu) <- c('Date', 'Site', 'Interviews', 'Anglers', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Sample days', 'Total Salmon')
 
 creelcumu <- merge(creelcumu, callsites, by = 'Site')
-
-
-# creel <- creeltsfull[, c(1:12)]
-# names(creel) <- c('Date', 'Site', 'Interviews', 'Anglers', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Sample marker', 'Total Salmon')
-# creel <- merge(creel, callsites, by = 'Site')
-
 
 #grab most recent data from each site
 last1 <- by(creelcumu, creelcumu$Site, FUN = tail, 1)

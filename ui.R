@@ -32,46 +32,4 @@ shinyUI(fluidPage(
                  
                  
                                
-                               
-                               
-                               
-                               
-                 
-                 
-           
-#   #Sidebar with dropdowns for the questions
-#   sidebarLayout(
-#     sidebarPanel(
-#       
-#       ###DROPDOWNS
-#       helpText("The visualizer displays the most recent cumulative count of fish (circle size), as reported to WDFW creel checkers at select sites in the last 15 days."),
-#       helpText(" "),
-#       helpText("Creel data from: http://wdfw.wa.gov/fishing/creel/puget"),
-#       helpText(paste("WDFW creel data as of : ", max(lastcreelcumu$Date), sep = '')),
-#       helpText(" "),
-#       helpText(" "),
-#       
-#       
-#       selectInput("fishtype",
-#                   "Choose your fish:",
-#                   choices = names(creelcumu)[c(5:10, 12)] #[3:dim(creel)[2]] 
-#       )
-#     ),
-#     
-#     mainPanel(
-#       #if (input$cumuq == 'Yes') { 
-#         
-#         #plotOutput("creelplotcumu", height = 833.33, width = 1000) 
-#   
-#      # } else { 
-#         
-#      #  plotOutput("creelplotcumu", height = 833.33, width = 1000) 
-#       leafletOutput("creelmap", height = 833.33, width = 1000) 
-#       
-#       
-#         
-#      # }
-#     )
-#   )
-# ))
-# 
+    
