@@ -51,8 +51,8 @@ cleanrawcreel <- function(d) {
   
   
   #aggregate to callsite, 1 obs per day
-  
-  d <- merge(d, rawsites, by = 'Site', all.x = T)
+  write.csv(d$Site[!(d$Site %in% rawsites$Site)], './Scripts/sitestoadd.csv', row.names = F)
+  d <- merge(d, rawsites, by = 'Site') #, all.x = T)
   d <- merge(d, callsites, by.x = 'callname', by.y = 'Site', all.x = T)
   
   colnames(d)[c(1,2)] <- c('Site', 'rawsite')

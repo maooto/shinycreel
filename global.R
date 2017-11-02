@@ -74,30 +74,46 @@ creeltsfull <- makecreelts(creelclean)
 
 creelcumu <- creeltsfull[ , c(1:2, 13:dim(creeltsfull)[2])]
 
-names(creelcumu) <- c('Date', 'Site', 'Interviews', 'Anglers', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Sample days', 'Total Salmon')
+creelcumu <- creeltsfull[ , c('datestamp', 
+                              'Site', 
+                              'sampleday', 
+                              'cuinterviews', 
+                              'cuanglers', 
+                              'cuchinook', 
+                              'cucoho', 
+                              'cupink', 
+                              'cuchum', 
+                              'culingcod', 
+                              'cuhalibut', 
+                              'cusampleday',
+                              'cuallsalmon')]
 
-creelcumu <- merge(creelcumu, callsites, by = 'Site')
 
-#grab most recent data from each site
-last1 <- by(creelcumu, creelcumu$Site, FUN = tail, 1)
-lastcreelcumu <- do.call('rbind', last1)
+names(creelcumu) <- c('Date', 'Site', 'sampled', 'Interviews', 'Anglers', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Sample days', 'Total Salmon')
 
-#grab recent two counts from each site for % change
-change1 <- by(creelcumu, creelcumu$Site, FUN = tail, 2)
-change2 <- do.call('rbind', change1)
+#creelcumu <- merge(creelcumu, callsites, by = 'Site')
 
-#calc % change between recent two counts at each site 
-creelchange <- ddply(creelcumu[,c('Site', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Total Salmon')], 'Site', function(x) { 
-  
-  sapply(x[,2:dim(x)[2]], function (x) { (max(x) - min(x))/min(x) })
-  
-  })
-
-#REPLACE NaNs w/ 0 (cases of 0/0)
-for(i in 2:dim(creelchange)[2]) { 
-  c <- creelchange[,i]
-  c[is.nan(c)] <- 0
-  c[is.infinite(c)] <- 0
-  creelchange[i] <- c
-}
-
+# #grab most recent data from each site
+# last1 <- by(creelcumu, creelcumu$Site, FUN = tail, 1)
+# last1 <- ddply(creelcumu, c(''))
+# lastcreelcumu <- do.call('rbind', last1)
+# 
+# #grab recent two counts from each site for % change
+# change1 <- by(creelcumu, creelcumu$Site, FUN = tail, 2)
+# change2 <- do.call('rbind', change1)
+# 
+# #calc % change between recent two counts at each site 
+# creelchange <- ddply(creelcumu[,c('Site', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Total Salmon')], 'Site', function(x) { 
+#   
+#   sapply(x[,2:dim(x)[2]], function (x) { (max(x) - min(x))/min(x) })
+#   
+#   })
+# 
+# #REPLACE NaNs w/ 0 (cases of 0/0)
+# for(i in 2:dim(creelchange)[2]) { 
+#   c <- creelchange[,i]
+#   c[is.nan(c)] <- 0
+#   c[is.infinite(c)] <- 0
+#   creelchange[i] <- c
+# }
+# 

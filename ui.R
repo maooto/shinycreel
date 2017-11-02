@@ -25,8 +25,8 @@ shinyUI(fluidPage(
                                helpText("The visualizer displays the most recent cumulative count of fish (circle size), as reported to WDFW creel checkers at select sites in the last 15 days."),
                                helpText(" "),
                                helpText("Creel data from: http://wdfw.wa.gov/fishing/creel/puget"),
-                               helpText(paste("WDFW creel data as of : ", max(lastcreelcumu$Date), sep = '')),
-                               helpText(" "),
+                               helpText("WDFW creel data for: "),
+                               helpText(paste(min(creelcumu$Date, na.rm = T), " through ", max(creelcumu$Date, na.rm = T), sep = "")),
                                helpText(" "))
              )))))
                  

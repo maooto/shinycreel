@@ -19,7 +19,10 @@ shinyServer(function(input, output) {
   #function to create vector for radi
   radmaker <- function(fish) { 
     
-    d <- as.data.frame(lastcreelcumu[, c(as.character(fish), 'Site', 'lat', 'long', 'Sample days', 'Anglers')])
+    #d <- as.data.frame(lastcreelcumu[, c(as.character(fish), 'Site', 'lat', 'long', 'Sample days', 'Anglers')])
+    
+    d <- as.data.frame(creelcumu[, c(as.character(fish), 'Site', 'lat', 'long', 'Sample days', 'Anglers')])
+    
 
     d$crate <- d[,as.character(fish)]/d$Anglers/d[,c('Sample days')]
     
@@ -28,7 +31,7 @@ shinyServer(function(input, output) {
     
     if (total == 0 ) {
       
-      d$rad <- rep(1, dim(d)[1])  
+      d$rad <- rep(1, dim(d)[1])  #deal with edge case of empty dataset
       
     } else { 
       
