@@ -17,7 +17,7 @@ shinyUI(fluidPage(
                                ###DROPDOWNS
                                selectInput("fishtype",
                                            "Choose your fish:",
-                                           choices = names(creelcumu)[c(5:10, 12)] #[3:dim(creel)[2]] 
+                                           choices = names(creelcumu)[c(6:11, 13)] 
                                ),
                                selectInput("catchrate", 
                                            "Display as fish per angler per sample day (catch intensity)?", 

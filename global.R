@@ -8,14 +8,22 @@ library(rsconnect)
 library(devtools)
 library(arules)
 library(leaflet)
+library(htmltools)
 
 source('./Scripts/getrawcreel.R')
 source('./Scripts/cleanrawcreel.R')
 source('./Scripts/makecreelts.R')
+source('./Scripts/circlemaker.R')
+source('./Scripts/labelmaker.R')
 
 initlat <- 47.871008
 initlong <- -122.494435
 initzoom <- 9
+
+## radii for circles
+rads <- data.frame(radbin = c(0:5), 
+                   rad = c(100, 1000, 2000, 3000, 5000, 7500))
+
 
 mycolors <- data.frame(colbin = c(0:6), 
                        color = as.character(c('#878787', #no change
@@ -34,6 +42,7 @@ mycolors <- data.frame(colbin = c(0:6),
                                   '> 100% increase'))
 )
 
+#colors for catchrates 
 mycolors2 <- data.frame(colbin = c(1:9), 
                        color = as.character(c('#003c30',
                                  '#01665e',
@@ -90,30 +99,3 @@ creelcumu <- creeltsfull[ , c('datestamp',
 
 
 names(creelcumu) <- c('Date', 'Site', 'sampled', 'Interviews', 'Anglers', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Sample days', 'Total Salmon')
-
-#creelcumu <- merge(creelcumu, callsites, by = 'Site')
-
-# #grab most recent data from each site
-# last1 <- by(creelcumu, creelcumu$Site, FUN = tail, 1)
-# last1 <- ddply(creelcumu, c(''))
-# lastcreelcumu <- do.call('rbind', last1)
-# 
-# #grab recent two counts from each site for % change
-# change1 <- by(creelcumu, creelcumu$Site, FUN = tail, 2)
-# change2 <- do.call('rbind', change1)
-# 
-# #calc % change between recent two counts at each site 
-# creelchange <- ddply(creelcumu[,c('Site', 'Chinook', 'Coho', 'Pink', 'Chum', 'Lingcod', 'Halibut', 'Total Salmon')], 'Site', function(x) { 
-#   
-#   sapply(x[,2:dim(x)[2]], function (x) { (max(x) - min(x))/min(x) })
-#   
-#   })
-# 
-# #REPLACE NaNs w/ 0 (cases of 0/0)
-# for(i in 2:dim(creelchange)[2]) { 
-#   c <- creelchange[,i]
-#   c[is.nan(c)] <- 0
-#   c[is.infinite(c)] <- 0
-#   creelchange[i] <- c
-# }
-# 
