@@ -10,7 +10,7 @@ shinyServer(function(input, output) {
   output$creelmap <- renderLeaflet({
     leaflet() %>% 
       setView(lat = initlat, lng = initlong, zoom = initzoom)  %>% 
-      addProviderTiles(providers$Stamen.TonerLite, 
+      addProviderTiles(providers$OpenStreetMap.BlackAndWhite, #Stamen.TonerLite, 
                        options = providerTileOptions(noWrap = TRUE) 
                        ) 
     })

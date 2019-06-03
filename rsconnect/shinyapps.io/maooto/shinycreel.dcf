@@ -1,0 +1,13 @@
+name: shinycreel
+title: shinycreel
+username:
+account: maooto
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 215483
+bundleId: 2125745
+url: https://maooto.shinyapps.io/shinycreel/
+when: 1559518714.72379
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: scraps/colormaker.R|scraps/cumucreelplotter.R|scraps/radmaker.R|scraps/shell.R

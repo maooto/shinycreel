@@ -7,6 +7,7 @@ library(plyr)
 library(rsconnect)
 library(devtools)
 library(arules)
+library(xml2)
 library(leaflet)
 library(htmltools)
 
